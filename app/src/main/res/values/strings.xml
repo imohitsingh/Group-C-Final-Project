@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Group C Final Project</string>
+    <string name="small_notebook">Small Notebook</string>
+    <string name="big_notebook">Big Notebook</string>
+    <string name="total_money_saved">Total Money Saved:</string>
+</resources>
