@@ -23,4 +23,9 @@ public class MainActivity extends AppCompatActivity {
         Intent bignotebook_intent = new Intent(this, BigNotebookActivity.class);
         startActivity(bignotebook_intent);
     }
+
+    public void goTo_SettingsActivity(View view) {
+        Intent settings_intent = new Intent(this,Settings.class);
+        startActivity(settings_intent);
+    }
 }
