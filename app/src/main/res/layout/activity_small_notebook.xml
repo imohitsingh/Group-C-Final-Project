@@ -25,7 +25,7 @@
         android:layout_width="160dp"
         android:layout_height="70dp"
         android:onClick="goTo_BigNotebookActivity"
-        android:text="Big notebook"
+        android:text="@string/big_notebook"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.848"
@@ -47,22 +47,6 @@
         app:layout_constraintVertical_bias="0.024" />
 
     <EditText
-        android:id="@+id/editTextThing"
-        android:layout_width="330dp"
-        android:layout_height="45dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/money_spent_on_grocery"
-        android:inputType="textPersonName"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.16" />
-
-    <EditText
         android:id="@+id/editTextMoney"
         android:layout_width="330dp"
         android:layout_height="45dp"
@@ -77,4 +61,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.262" />
+
+    <EditText
+        android:id="@+id/editTextThing"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/money_spent_on_grocery"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.169" />
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="330dp"
+        android:layout_height="70dp"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.431"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.366" />
+
+    <ListView
+        android:id="@+id/expenses"
+        android:layout_width="342dp"
+        android:layout_height="240dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.698" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
