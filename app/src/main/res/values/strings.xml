@@ -6,4 +6,6 @@
     <string name="home">Home</string>
     <string name="money_spent_on_grocery">Money spent on (Grocery)</string>
     <string name="amount_spent_10">Amount spent ($10)</string>
+    <string name="save">Save</string>
+    <string name="emptyInput">Input is empty</string>
 </resources>
