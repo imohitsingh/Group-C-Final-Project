@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CDDC39"
+    android:background="#FFEB3B"
     tools:context=".BigNotebookActivity">
 
     <Button
@@ -15,8 +15,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.062"
-        tools:layout_editor_absoluteX="47dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="47dp" />
 
     <Button
         android:id="@+id/button5"
@@ -26,8 +26,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.371"
-        tools:layout_editor_absoluteX="47dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="47dp" />
 
     <Button
         android:id="@+id/button4"
@@ -37,19 +37,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.22"
-        tools:layout_editor_absoluteX="47dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="47dp" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="317dp"
         android:layout_height="72dp"
-        android:text="Small notebook"
         android:onClick="goTo_SmallNotebookActivity"
+        android:text="Small notebook"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.875"
-        tools:layout_editor_absoluteX="47dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="47dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
