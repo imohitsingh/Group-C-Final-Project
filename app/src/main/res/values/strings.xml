@@ -10,5 +10,12 @@
     <string name="emptyInput">Input is empty</string>
     <string name="total">Total:</string>
     <string name="date">Save Date</string>
-    <string name="dd_mm_yyyy">dd//mm/yyyy</string>
+    <string name="dd_mm_yyyy">dd/mm/yyyy</string>
+    <string-array name="currencies">
+        <item>$(CAD)</item>
+        <item>$(USD)</item>
+        <item>$(AUD)</item>
+        <item>€(EUR)</item>
+        <item>¥(JPY)</item>
+    </string-array>
 </resources>
