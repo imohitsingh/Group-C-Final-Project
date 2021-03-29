@@ -3,4 +3,12 @@
     <string name="small_notebook">Small Notebook</string>
     <string name="big_notebook">Big Notebook</string>
     <string name="total_money_saved">Total Money Saved:</string>
+    <string name="home">Home</string>
+    <string name="money_spent_on_grocery">Money spent on (Grocery)</string>
+    <string name="amount_spent_10">Amount spent ($10)</string>
+    <string name="save">Add</string>
+    <string name="emptyInput">Input is empty</string>
+    <string name="total">Total:</string>
+    <string name="date">Save Date</string>
+    <string name="dd_mm_yyyy">dd//mm/yyyy</string>
 </resources>
