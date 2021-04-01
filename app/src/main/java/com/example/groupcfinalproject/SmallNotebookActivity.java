@@ -27,6 +27,8 @@ public class SmallNotebookActivity extends AppCompatActivity {
     String saveDate;
     TextView sumNum;
     ListView show;
+    DatabaseHelper databaseHelper;
+    ArrayAdapter budgetArrayAdapter;
 
     double sum = 0;
 
@@ -42,23 +44,34 @@ public class SmallNotebookActivity extends AppCompatActivity {
         show = (ListView)findViewById(R.id.expenses);
         save =(Button)findViewById(R.id.saveBtn);
         //dateBtn = (Button)findViewById(R.id.dateBtn);
+
+        databaseHelper = new DatabaseHelper(SmallNotebookActivity.this);
+
+        showItemsOnListView(databaseHelper);
+
+
         save.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                String getInputText = inputText.getText().toString();
-                String getInputNum = inputNum.getText().toString();
-                Double getNum = Double.parseDouble(inputNum.getText().toString());
+            @Override
+            public void onClick(View v) {
 
-                if(getInputText == null || getInputText.trim().equals("") || getInputNum == null || getInputNum.trim().equals("")){
-                    Toast.makeText(SmallNotebookActivity.this, R.string.emptyInput, Toast.LENGTH_LONG).show();
+                BudgetModel budgetModel;
+                try {
+                    budgetModel = new BudgetModel(-1, inputText.getText().toString(), Integer.parseInt(inputNum.getText().toString()));
+                    Toast.makeText(SmallNotebookActivity.this, budgetModel.toString(), Toast.LENGTH_SHORT).show();
+                }
+                catch(Exception e)
+                {
+                    Toast.makeText(SmallNotebookActivity.this, "Error creating entry!", Toast.LENGTH_SHORT).show();
+                    budgetModel = new BudgetModel(-1, "error", 0);
                 }
 
-                else{
-                    addArray.add(getInputText + " - $" + getInputNum);
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(SmallNotebookActivity.this, android.R.layout.simple_list_item_1, addArray);
-                    show.setAdapter(adapter);
-                    sum += getNum;
-                    sumNum.setText("Total: " + sum);
-                }
+                DatabaseHelper databaseHelper=new DatabaseHelper(SmallNotebookActivity.this);
+                boolean success = databaseHelper.addOne(budgetModel);
+                Toast.makeText(SmallNotebookActivity.this, "Success= "+success, Toast.LENGTH_SHORT).show();
+
+                showItemsOnListView(databaseHelper);
+
+
             }
         });
 /*
@@ -87,6 +100,11 @@ public class SmallNotebookActivity extends AppCompatActivity {
                 Toast.makeText(SmallNotebookActivity.this, saveDate, Toast.LENGTH_LONG).show();
             }
         });*/
+    }
+
+    private void showItemsOnListView(DatabaseHelper databaseHelper2) {
+        budgetArrayAdapter = new ArrayAdapter<BudgetModel>(SmallNotebookActivity.this, android.R.layout.simple_list_item_1, databaseHelper2.getEveryone());
+        show.setAdapter(budgetArrayAdapter);
     }
 
     public void goTo_HomeActivity(View view) {
