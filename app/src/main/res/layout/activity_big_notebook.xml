@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#CDDC39"
+    android:background="#FFEB3B"
     tools:context=".BigNotebookActivity">
 
     <Button
@@ -13,9 +13,10 @@
         android:layout_height="72dp"
         android:text="Monthly income plan"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.062"
-        tools:layout_editor_absoluteX="47dp"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -24,9 +25,10 @@
         android:layout_height="72dp"
         android:text="Savings"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.371"
-        tools:layout_editor_absoluteX="47dp"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -35,21 +37,23 @@
         android:layout_height="72dp"
         android:text="Expenses"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.22"
-        tools:layout_editor_absoluteX="47dp"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="317dp"
         android:layout_height="72dp"
-        android:text="Small notebook"
         android:onClick="goTo_SmallNotebookActivity"
+        android:text="Small notebook"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.875"
-        tools:layout_editor_absoluteX="47dp"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

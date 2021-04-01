@@ -41,7 +41,7 @@ public class SmallNotebookActivity extends AppCompatActivity {
         date = (EditText)findViewById(R.id.editTextDate);
         show = (ListView)findViewById(R.id.expenses);
         save =(Button)findViewById(R.id.saveBtn);
-        dateBtn = (Button)findViewById(R.id.dateBtn);
+        //dateBtn = (Button)findViewById(R.id.dateBtn);
         save.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 String getInputText = inputText.getText().toString();
@@ -61,7 +61,7 @@ public class SmallNotebookActivity extends AppCompatActivity {
                 }
             }
         });
-
+/*
         dateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +86,7 @@ public class SmallNotebookActivity extends AppCompatActivity {
 
                 Toast.makeText(SmallNotebookActivity.this, saveDate, Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
     }
 
     public void goTo_HomeActivity(View view) {
