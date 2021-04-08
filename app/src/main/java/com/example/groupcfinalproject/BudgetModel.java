@@ -26,11 +26,7 @@ public class BudgetModel{
 
     @Override
     public String toString() {
-        return "BudgetModel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", amount=" + amount +
-                '}';
+        return name + " ($" + amount + ")";
     }
 
     // get and set
