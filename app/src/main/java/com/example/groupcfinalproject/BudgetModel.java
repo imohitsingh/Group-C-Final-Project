@@ -6,20 +6,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class BudgetModel{
-
-    DateFormat date = new SimpleDateFormat("dd/MM/yyyy");
     private int id;
     private String name;
     private int amount;
-    private Date date;
     //cons
 
 
-    public BudgetModel(int id, String name, int amount, Date date) {
+    public BudgetModel(int id, String name, int amount) {
         this.id = id;
         this.name = name;
         this.amount = amount;
-        this.date = date;
     }
 
     public BudgetModel() {
@@ -34,7 +30,6 @@ public class BudgetModel{
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", amount=" + amount +
-                ", date=" + date +
                 '}';
     }
 
@@ -61,14 +56,6 @@ public class BudgetModel{
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public DateFormat getDate() {
-        return date;
-    }
-
-    public void setDate(DateFormat date) {
-        this.date = date;
     }
 
 }
