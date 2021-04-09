@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,76 +19,91 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class SmallNotebookActivity extends AppCompatActivity {
 
-    Button save, dateBtn;
-    ArrayList<String> addArray = new ArrayList<String>();
-    EditText inputText, inputNum, date;
-    String saveDate;
-    TextView sumNum;
-    ListView show;
+    // reference to all buttons etc
+    Button btn_add;
+    EditText et_name, et_amount;
+    ListView lv_nameList;
 
-    double sum = 0;
+    ArrayAdapter budgetArrayAdapter;
+    DatabaseHelper databaseHelper;
+    List<BudgetModel> everyone;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_small_notebook);
 
-        inputText = (EditText)findViewById(R.id.editTextThing);
-        inputNum = (EditText)findViewById(R.id.editTextMoney);
-        sumNum = (TextView)findViewById(R.id.sumText);
-        date = (EditText)findViewById(R.id.editTextDate);
-        show = (ListView)findViewById(R.id.expenses);
-        save =(Button)findViewById(R.id.saveBtn);
-        dateBtn = (Button)findViewById(R.id.dateBtn);
-        save.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                String getInputText = inputText.getText().toString();
-                String getInputNum = inputNum.getText().toString();
-                Double getNum = Double.parseDouble(inputNum.getText().toString());
+    btn_add=findViewById(R.id.btn_add);
+    et_name=findViewById(R.id.et_name);
+    et_amount=findViewById(R.id.et_amount);
+    lv_nameList=findViewById(R.id.lv_nameList);
 
-                if(getInputText == null || getInputText.trim().equals("") || getInputNum == null || getInputNum.trim().equals("")){
-                    Toast.makeText(SmallNotebookActivity.this, R.string.emptyInput, Toast.LENGTH_LONG).show();
-                }
 
-                else{
-                    addArray.add(getInputText + " - $" + getInputNum);
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(SmallNotebookActivity.this, android.R.layout.simple_list_item_1, addArray);
-                    show.setAdapter(adapter);
-                    sum += getNum;
-                    sumNum.setText("Total: " + sum);
-                }
+
+
+
+        //necessary for showing in list view. //simple_list_item_1 most basic view
+        showItemsOnListView();
+        /*UPDATE LIST as soon we start ^ */
+
+    btn_add.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            BudgetModel budgetModel;
+            try {//using try catch here to catch if a dumb user enters nothing and clicks add button
+
+
+                // -1 is a default value cuz why not?
+                budgetModel = new BudgetModel(-1, et_name.getText().toString(), Integer.parseInt(et_amount.getText().toString()));
+                Toast.makeText(SmallNotebookActivity.this, budgetModel.toString(), Toast.LENGTH_SHORT).show();
             }
-        });
-
-        dateBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); // Make sure user insert date into edittext in this format.
-
-                Date dateObject;
-
-                try{
-                    String dob_var=(date.getText().toString());
-
-                    dateObject = formatter.parse(dob_var);
-
-                    saveDate = new SimpleDateFormat("dd/MM/yyyy").format(dateObject);
-                }
-
-                catch (java.text.ParseException e)
-                {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                    Log.i("E11111111111", e.toString());
-                }
-
-                Toast.makeText(SmallNotebookActivity.this, saveDate, Toast.LENGTH_LONG).show();
+            catch(Exception e)
+            {
+                Toast.makeText(SmallNotebookActivity.this, "Error creating item!", Toast.LENGTH_SHORT).show();
+                //if it fails add this as default
+                 budgetModel = new BudgetModel(-1, "error creating item!", 0);
             }
-        });
+
+            DatabaseHelper databaseHelper = new DatabaseHelper(SmallNotebookActivity.this);
+            boolean success = databaseHelper.addOne(budgetModel);
+
+            Toast.makeText(SmallNotebookActivity.this, "Success = "+success, Toast.LENGTH_SHORT).show();
+            /*UPDATE LIST as soon we add*/
+            showItemsOnListView();
+        }
+    });
+
+    lv_nameList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            BudgetModel clickedItem = (BudgetModel)parent.getItemAtPosition(position);
+            databaseHelper.deleteOne(clickedItem);
+            showItemsOnListView();
+            Toast.makeText(SmallNotebookActivity.this, "Deleted ",Toast.LENGTH_SHORT).show();
+
+        }
+    });
     }
+
+    private void showItemsOnListView() {
+
+        //to show items in list view
+        databaseHelper = new DatabaseHelper(SmallNotebookActivity.this);
+        everyone = databaseHelper.getEveryone();
+        //important to show item in list view, line #90
+        budgetArrayAdapter = new ArrayAdapter<BudgetModel>(SmallNotebookActivity.this, android.R.layout.simple_list_item_1, everyone);
+        lv_nameList.setAdapter(budgetArrayAdapter);
+
+
+    }
+
+
 
     public void goTo_HomeActivity(View view) {
         Intent home_intent = new Intent(this, MainActivity.class);
