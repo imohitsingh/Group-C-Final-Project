@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 //needs to implement father > SQLiteOpenHelper
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -20,6 +21,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_BUDGET_NAME = "BUDGET_NAME";
     public static final String COLUMN_BUDGET_AMOUNT = "BUDGET_AMOUNT";
     public static final String COLUMN_ID = "ID";
+    //public static final String COLUMN_BUDGET_DATE = "BUDGET_DATE";
+
 
     //implementing constructor here as need to satify father side else it gives error on the line 13
     public DatabaseHelper(@Nullable Context context) {
@@ -33,9 +36,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //oncreate has code to add item to db
     @Override
     public void onCreate(SQLiteDatabase db) {
-    //main code
-
-        String createTableStatement= "CREATE TABLE " + BUDGET_TABLE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_BUDGET_NAME + " TEXT, " + COLUMN_BUDGET_AMOUNT + " INT )";
+        //main code
+        //String createTableStatement= "CREATE TABLE " + BUDGET_TABLE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_BUDGET_NAME + " TEXT, " + COLUMN_BUDGET_AMOUNT + " INT, " + COLUMN_BUDGET_DATE + " TEXT)";
+        String createTableStatement= "CREATE TABLE " + BUDGET_TABLE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_BUDGET_NAME + " TEXT, " + COLUMN_BUDGET_AMOUNT + " INT)";
         db.execSQL(createTableStatement);
 
     }
@@ -47,8 +50,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     }
-  
-  
+
+
     //lets add items finally
     public boolean addOne(BudgetModel budgetModel) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -56,8 +59,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cv.put(COLUMN_BUDGET_NAME, budgetModel.getName());
         cv.put(COLUMN_BUDGET_AMOUNT, budgetModel.getAmount());
+        //cv.put(COLUMN_BUDGET_DATE, budgetModel.getDate());
+
 
         long insert = db.insert(BUDGET_TABLE, null, cv);
+
         if (insert == -1) {
             return false;
         } else {
@@ -95,16 +101,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         {
             //loop throught result then create new customers
             do{
-                    int budgetID = cursor.getInt(0);
-                    String budgetName = cursor.getString(1);
-                    int budgetAmount = cursor.getInt(2);
+                int budgetID = cursor.getInt(0);
+                String budgetName = cursor.getString(1);
+                int budgetAmount = cursor.getInt(2);
 
-                    BudgetModel newBudget= new BudgetModel(budgetID, budgetName, budgetAmount);
-                    returnList.add(newBudget);
+                BudgetModel newBudget= new BudgetModel(budgetID, budgetName, budgetAmount);
+                returnList.add(newBudget);
             }while(cursor.moveToNext());
         }
         else {
-                // if no items in the list, do nothing
+            // if no items in the list, do nothing
         }
         //close up
         cursor.close();
