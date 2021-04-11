@@ -1,10 +1,5 @@
 package com.example.groupcfinalproject;
 
-
-
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-
 public class BudgetModel{
     private int id;
     private String name;
@@ -18,18 +13,10 @@ public class BudgetModel{
         this.amount = amount;
     }
 
-    public BudgetModel() {
+    public BudgetModel(int id) {
+        this.id = id;
     }
 
-
-    //toString
-
-    @Override
-    public String toString() {
-        return name + " ($" + amount + ")";
-    }
-
-    // get and set
     public int getId() {
         return id;
     }
@@ -52,6 +39,16 @@ public class BudgetModel{
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+
+    @Override
+    public String toString() {
+        return "BudgetModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", amount=" + amount +
+                '}';
     }
 
 }

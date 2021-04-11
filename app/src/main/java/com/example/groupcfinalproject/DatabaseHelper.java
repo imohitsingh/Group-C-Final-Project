@@ -1,7 +1,5 @@
 package com.example.groupcfinalproject;
 
-
-
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -13,83 +11,105 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//needs to implement father > SQLiteOpenHelper
 public class DatabaseHelper extends SQLiteOpenHelper {
 
+    //? use const = jump to line 29, if we dont create constant then we need to rewrite BUDGET_TABLE again
     public static final String BUDGET_TABLE = "BUDGET_TABLE";
     public static final String COLUMN_BUDGET_NAME = "BUDGET_NAME";
-    public static final String COLUMN_BUDGET_AGE = "BUDGET_AGE";
+    public static final String COLUMN_BUDGET_AMOUNT = "BUDGET_AMOUNT";
     public static final String COLUMN_ID = "ID";
 
+    //implementing constructor here as need to satify father side else it gives error on the line 13
     public DatabaseHelper(@Nullable Context context) {
         super(context, "budget.db", null, 1);
+
     }
 
+
+
+
+    //oncreate has code to add item to db
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableStatement= "CREATE TABLE " + BUDGET_TABLE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_BUDGET_NAME + " TEXT, " + COLUMN_BUDGET_AGE + " INT)";
+    //main code
+
+        String createTableStatement= "CREATE TABLE " + BUDGET_TABLE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_BUDGET_NAME + " TEXT, " + COLUMN_BUDGET_AMOUNT + " INT )";
         db.execSQL(createTableStatement);
+
     }
+
+    //to update modify for changes later thought of
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
 
     }
-    public boolean addOne(BudgetModel budgetModel)
-    {
-        SQLiteDatabase db= this.getWritableDatabase();
-        ContentValues cv = new ContentValues();
+  
+  
+    //lets add items finally
+    public boolean addOne(BudgetModel budgetModel) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();//this class takes pairs of values
+
         cv.put(COLUMN_BUDGET_NAME, budgetModel.getName());
-        cv.put(COLUMN_BUDGET_AGE, budgetModel.getAmount());
+        cv.put(COLUMN_BUDGET_AMOUNT, budgetModel.getAmount());
 
         long insert = db.insert(BUDGET_TABLE, null, cv);
-        if(insert==-1)
+        if (insert == -1) {
             return false;
+        } else {
 
-        return true;
+            return true;
+        }
     }
-
     public boolean deleteOne(BudgetModel budgetModel)
     {
         SQLiteDatabase db = this.getWritableDatabase();
-        String queryString = "DELETE FROM "+ BUDGET_TABLE+ "WHERE "+ COLUMN_ID+" = "+ budgetModel.getId();
+        String queryString = "DELETE FROM "+BUDGET_TABLE+" WHERE "+ COLUMN_ID+" = "+budgetModel.getId();
         Cursor cursor = db.rawQuery(queryString, null);
-
-        if(cursor.moveToFirst())
+        if (cursor.moveToFirst())
+        {
             return true;
-        return false;
-
-    }
-
-    public List<BudgetModel> getEveryone()
-    {
-        List<BudgetModel> returnList = new ArrayList<>();
-
-        String queryString = "SELECT * FROM "+ BUDGET_TABLE;
-        SQLiteDatabase db= this.getReadableDatabase();
-
-        Cursor cursor = db.rawQuery(queryString, null);
-
-        if (cursor.moveToFirst()){
-            //loop to rest , creating and insert
-            do{
-                int budgetID= cursor.getInt(0);
-                String budgetName = cursor.getString(1);
-                int budgetAmt = cursor.getInt(2);
-
-                BudgetModel newBudget = new BudgetModel(budgetID,budgetName,budgetAmt);
-                returnList.add(newBudget);
-
-            }while(cursor.moveToNext());
-
         }
         else
         {
-            //fail, do not do anything
+            return false;
         }
+    }
+    //lets list all items
+    public List<BudgetModel> getEveryone()
+    {
+        List<BudgetModel> returnList = new ArrayList<>();
+        //
+        String queryString = " SELECT * FROM " + BUDGET_TABLE;
+
+        SQLiteDatabase db= this.getReadableDatabase();
+
+        //rawQ is used as its return cursor
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if(cursor.moveToFirst())
+        {
+            //loop throught result then create new customers
+            do{
+                    int budgetID = cursor.getInt(0);
+                    String budgetName = cursor.getString(1);
+                    int budgetAmount = cursor.getInt(2);
+
+                    BudgetModel newBudget= new BudgetModel(budgetID, budgetName, budgetAmount);
+                    returnList.add(newBudget);
+            }while(cursor.moveToNext());
+        }
+        else {
+                // if no items in the list, do nothing
+        }
+        //close up
         cursor.close();
         db.close();
-
         return returnList;
+
     }
 }
