@@ -1,10 +1,9 @@
 package com.example.groupcfinalproject;
 
-public class BudgetModel {
+public class BudgetModel{
     private int id;
     private String name;
     private int amount;
-
     //cons
 
 
@@ -42,6 +41,7 @@ public class BudgetModel {
         this.amount = amount;
     }
 
+
     @Override
     public String toString() {
         return "BudgetModel{" +
@@ -50,4 +50,5 @@ public class BudgetModel {
                 ", amount=" + amount +
                 '}';
     }
+
 }

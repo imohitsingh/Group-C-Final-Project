@@ -23,6 +23,7 @@ import java.util.List;
 
 public class SmallNotebookActivity extends AppCompatActivity {
 
+
     // reference to all buttons etc
     Button btn_add;
     EditText et_name, et_amount;
@@ -33,10 +34,12 @@ public class SmallNotebookActivity extends AppCompatActivity {
     List<BudgetModel> everyone;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_small_notebook);
+
 
     btn_add=findViewById(R.id.btn_add);
     et_name=findViewById(R.id.et_name);
@@ -63,6 +66,7 @@ public class SmallNotebookActivity extends AppCompatActivity {
                 budgetModel = new BudgetModel(-1, et_name.getText().toString(), Integer.parseInt(et_amount.getText().toString()));
                 Toast.makeText(SmallNotebookActivity.this, budgetModel.toString(), Toast.LENGTH_SHORT).show();
             }
+
             catch(Exception e)
             {
                 Toast.makeText(SmallNotebookActivity.this, "Error creating item!", Toast.LENGTH_SHORT).show();
@@ -89,6 +93,7 @@ public class SmallNotebookActivity extends AppCompatActivity {
 
         }
     });
+
     }
 
     private void showItemsOnListView() {

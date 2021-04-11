@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+
 //needs to implement father > SQLiteOpenHelper
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -32,7 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //oncreate has code to add item to db
     @Override
     public void onCreate(SQLiteDatabase db) {
-//main code
+    //main code
 
         String createTableStatement= "CREATE TABLE " + BUDGET_TABLE + "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_BUDGET_NAME + " TEXT, " + COLUMN_BUDGET_AMOUNT + " INT )";
         db.execSQL(createTableStatement);
@@ -40,13 +41,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //to update modify for changes later thought of
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
 
-
-
     }
+  
+  
     //lets add items finally
     public boolean addOne(BudgetModel budgetModel) {
         SQLiteDatabase db = this.getWritableDatabase();
