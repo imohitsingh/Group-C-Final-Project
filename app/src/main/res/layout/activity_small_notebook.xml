@@ -8,6 +8,7 @@
     tools:context=".SmallNotebookActivity">
 
     <Button
+
         android:id="@+id/small_to_home"
         android:layout_width="160dp"
         android:layout_height="70dp"
@@ -17,8 +18,8 @@
         android:text="@string/home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <Button
+
         android:id="@+id/small_to_big"
         android:layout_width="160dp"
         android:layout_height="70dp"
@@ -32,9 +33,9 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="336dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="334dp"
+        android:layout_height="44dp"
+
         android:text="@string/small_notebook"
         android:textAlignment="center"
         android:textSize="36sp"
@@ -44,7 +45,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextMoney"
+        android:id="@+id/et_amount"
         android:layout_width="330dp"
         android:layout_height="45dp"
         android:layout_marginTop="156dp"
@@ -59,7 +60,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextThing"
+        android:id="@+id/et_name"
         android:layout_width="330dp"
         android:layout_height="45dp"
         android:layout_marginTop="92dp"
@@ -73,8 +74,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ListView
-        android:id="@+id/expenses"
+
+    <Button
+        android:id="@+id/btn_add"
+
         android:layout_width="330dp"
         android:layout_height="150dp"
         android:layout_marginTop="348dp"
@@ -83,42 +86,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/saveBtn"
-        android:layout_width="330dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="264dp"
-        android:text="@string/save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/sumText"
-        android:layout_width="330dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="508dp"
-        android:text="@string/total"
-        android:textColor="@color/black"
-        android:textSize="24sp"
+    <ListView
+        android:id="@+id/lv_nameList"
+        android:layout_width="322dp"
+        android:layout_height="304dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.735" />
 
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="319dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="212dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/dd_mm_yyyy"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.413"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
